@@ -123,6 +123,11 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Puzzle.cs" />
+    <Compile Include="PuzzleFrame.xaml.cs">
+      <DependentUpon>PuzzleFrame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PuzzleManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -130,6 +135,24 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Icons\Set1\Asset 1.svg" />
+    <Content Include="Icons\Set1\Asset 2.svg" />
+    <Content Include="Icons\Set1\Asset 3.svg" />
+    <Content Include="Icons\Set1\Asset 4.svg" />
+    <Content Include="Icons\Set1\Asset 5.svg" />
+    <Content Include="Icons\Set1\Asset 6.svg" />
+    <Content Include="Icons\Set1\Asset 7.svg" />
+    <Content Include="Icons\Set1\Asset 8.svg" />
+    <Content Include="Icons\Set1\Asset 9.svg" />
+    <Content Include="Icons\Set2\Asset 1.svg" />
+    <Content Include="Icons\Set2\Asset 2.svg" />
+    <Content Include="Icons\Set2\Asset 3.svg" />
+    <Content Include="Icons\Set2\Asset 4.svg" />
+    <Content Include="Icons\Set2\Asset 5.svg" />
+    <Content Include="Icons\Set2\Asset 6.svg" />
+    <Content Include="Icons\Set2\Asset 7.svg" />
+    <Content Include="Icons\Set2\Asset 8.svg" />
+    <Content Include="Icons\Set2\Asset 9.svg" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -148,12 +171,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="PuzzleFrame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>6.2.13</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

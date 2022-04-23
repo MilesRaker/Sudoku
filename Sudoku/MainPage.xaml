@@ -9,6 +9,20 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
+        <!-- Example menu bar: Edit as needed-->
+        <MenuBar Name="TopMenu">
+            <MenuBarItem Title="File">
+                <MenuFlyoutItem>New Puzzle</MenuFlyoutItem>
+                <MenuFlyoutItem>Solve</MenuFlyoutItem>
+                <MenuFlyoutItem>Exit</MenuFlyoutItem>
+            </MenuBarItem>
+            <MenuBarItem Title="Edit"/>
+            <MenuBarItem Title="Create"/>
+        </MenuBar>
     </Grid>
 </Page>
