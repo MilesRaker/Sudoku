@@ -24,7 +24,10 @@ namespace Sudoku
     {
         public MainPage()
         {
+            Puzzle puzzle = new Puzzle();
             this.InitializeComponent();
+            
+
         }
     }
 }
