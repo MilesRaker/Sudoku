@@ -24,5 +24,6 @@
             <MenuBarItem Title="Edit"/>
             <MenuBarItem Title="Create"/>
         </MenuBar>
+        <Frame Grid.Row="1" x:Name="WorkingPuzzle"/>
     </Grid>
 </Page>

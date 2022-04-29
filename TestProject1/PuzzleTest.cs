@@ -20,7 +20,7 @@ namespace TestProject1
         public void TestUsedInRow()
         {
             // arrange
-            Puzzle puzzle = new Puzzle();
+            PuzzleGenerator puzzle = new PuzzleGenerator();
             
             puzzle._puzzleSolved = new int[9, 9] { { 0,2,4,9,5,3,6,7,1 },
                                                 { 6,3,5,8,1,7,9,2,4 },
