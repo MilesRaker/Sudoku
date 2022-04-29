@@ -25,6 +25,17 @@ namespace Sudoku
         public PuzzleFrame()
         {
             this.InitializeComponent();
+            //foreach(int index in DemoSudokuboard)
+            //{
+            //    switch (DemoSudokuBoard[index])
+            //    {
+            //        case 1: 
+            //        case 2:
+            //        case 9: Array of gridsquares.Source = "./Icons/Set1/Asset 9";
+
+            //    }
+            //}
+
         }
     }
 }
