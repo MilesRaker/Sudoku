@@ -19,11 +19,7 @@ namespace Sudoku
         private int[] _nums;
         public PuzzleGenerator(int size)
         {
-            _nums = new int[size];
-            for (int i = 1; i <= size; i++)
-            {
-                _nums[i-1] = i;
-            }
+            InitializeNums(size);
             _fullPuzzle = PlaceNum(0, 0, new int[size, size]);
             while (true) { }
             // PlaceNum(0, 0, RandomOneThroughNine(), new List<int>(), new int[9, 9]);
@@ -31,6 +27,18 @@ namespace Sudoku
             // _fullPuzzle = CreatePuzzleSolved();
             // _puzzleStart = createPuzzleStart();
         }
+
+        private void InitializeNums(int size)
+        {
+            _nums = new int[size];
+            for (int i = 1; i <= size; i++)
+            {
+                _nums[i - 1] = i;
+            }
+            Random random = new Random();
+            _nums = _nums.OrderBy(x => random.Next()).ToArray();
+        }
+
         private int[,] PlaceNum(int x, int y, int[,] board)
         {
             foreach (int num in _nums)
@@ -59,6 +67,8 @@ namespace Sudoku
             // no valid numbers in _nums, gotta backtrack
             return board;
         }
+
+        // ----------- PlaceNum Helpers ---------------
         private bool IsComplete(int[,] board)
         {
             foreach (int entry in board)
@@ -78,7 +88,6 @@ namespace Sudoku
             else
                 return true;
         }
-
 
         private bool UsedInRow(int[,] board, int num, int row)
         {
