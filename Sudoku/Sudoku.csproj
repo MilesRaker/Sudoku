@@ -123,11 +123,13 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Puzzle.cs" />
+    <Compile Include="PuzzleGenerator.cs" />
     <Compile Include="PuzzleFrame.xaml.cs">
       <DependentUpon>PuzzleFrame.xaml</DependentUpon>
     </Compile>
     <Compile Include="PuzzleManager.cs" />
+    <Compile Include="PuzzleReduced.cs" />
+    <Compile Include="PuzzleSolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
