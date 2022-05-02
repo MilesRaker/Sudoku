@@ -9,12 +9,22 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <!--<Image Source="Assets/Background.jpg" Stretch="Fill"  />
+        <Image Name="Logo" Source="Assets/sukocatslogo.jpg" Grid.Row="0" Grid.ColumnSpan="3" Width="300" VerticalAlignment="Top" />-->
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Image Source="Assets/Background.jpg" Stretch="Fill"  />
+     
+        </Grid>
+        <Grid Grid.Row="1">
+            <Image Name="Logo" Source="Assets/sukocatslogo.jpg" Width="300" VerticalAlignment="Top" Height="135" />
+        </Grid>
 
         <!-- Example menu bar: Edit as needed-->
+
         <MenuBar Name="TopMenu">
             <MenuBarItem Title="File">
                 <MenuFlyoutItem>New Puzzle</MenuFlyoutItem>
@@ -24,5 +34,8 @@
             <MenuBarItem Title="Edit"/>
             <MenuBarItem Title="Create"/>
         </MenuBar>
+        <Frame Grid.Row="1" x:Name="WorkingPuzzle"/>
     </Grid>
 </Page>
+
+

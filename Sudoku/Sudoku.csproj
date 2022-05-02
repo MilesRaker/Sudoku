@@ -135,6 +135,8 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Background.jpg" />
+    <Content Include="Assets\sukocatslogo.jpg" />
     <Content Include="Icons\Set1\Asset 1.svg" />
     <Content Include="Icons\Set1\Asset 2.svg" />
     <Content Include="Icons\Set1\Asset 3.svg" />
