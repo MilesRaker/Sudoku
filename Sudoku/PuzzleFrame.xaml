@@ -16,7 +16,7 @@
          PuzzleFrame does not include background images or window styling; this is the job of MainPage.xaml
     -->
 
-    <StackPanel Name="test">
+    <StackPanel Name="NineFrame">
         
     </StackPanel>
     <!--<Grid >
