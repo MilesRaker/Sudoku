@@ -9,118 +9,143 @@ namespace Sudoku
     public class PuzzleGenerator
     {
         /*  -------PuzzleGenerator-------
-         * This class builds 9 x 9 Sudoku puzzles
+         * This class builds N x N Sudoku puzzles
          * Every gridsquare is filled with valid numbers
          */
+        public int[,] PuzzleStart { get { return _puzzleStart; } }
+        public int[,] CompletePuzzle { get { return _completePuzzle; } }
 
-        private int[,] _fullPuzzle = new int[9, 9];
+        private int[,] _puzzleStart;
         private Random _random = new Random();
+        private int _uniqueSolutionCount = 0;
+
+        //
+        private int[,] _completePuzzle;
         private bool _isComplete = false;
-
-        public PuzzleGenerator()
+        private int[] _nums;
+        private int _size;
+        public PuzzleGenerator(int size, int difficulty)
         {
-            PlaceNum(0, 0, RandomOneThroughNine(), new List<int>(), new int[9, 9]);
-            // _difficultyLevel = difficultyLevel;
-            // _fullPuzzle = CreatePuzzleSolved();
-            // _puzzleStart = createPuzzleStart();
+            _size = size;
+            InitializeNums();
+            PlaceNum(0, 0, new int[_size, _size]);
+            int[,] arrayCopy = new int[_size, _size];
+            Array.Copy(_completePuzzle, arrayCopy, _size * _size);
+            CreatePuzzleStart(arrayCopy, difficulty);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <param name="QToTry">Starts as a random list of 1 through 9</param>
-        /// <param name="QTried">Numbers tried for this particular spot</param>
-        /// <param name="board"></param>
-        private void PlaceNum(int x, int y, List<int> QToTry, List<int> QTried, int[,] board)
+        private void CreatePuzzleStart(int[,] board, int difficulty)
         {
-            if (IsComplete(board)) // base case
+            int i = 0;
+            while (i < difficulty)
             {
-                _fullPuzzle = board;
-                _isComplete = true;
-                return;
-            }
-            PlaceNumRecursive(x, y, QToTry, QTried, board);
-            
-        }
-
-        private void PlaceNumRecursive(int x, int y, List<int> QToTry, List<int> QTried, int[,] board)
-        {
-            int qIndex = 0; // index for QToTry
-            while (QToTry.Count > 0)
-            {
-                // select a num that hasn't been tried for this slot
-                while (QTried.Contains(QToTry[qIndex]))
+                int x = _random.Next(0, 9);
+                int y = _random.Next(0, 9);
+                if (board[x, y] != 0)
                 {
-                    if(qIndex + 1 < QToTry.Count)
+                    board[x, y] = 0;
+
+                    Solve(board);
+                    if (_uniqueSolutionCount == 1)
                     {
-                        qIndex++; // check out the next number
+                        i++;
                     }
                     else
                     {
-                        return; // no numbers in QToTry will work, do backtrack
+                        board[x, y] = _completePuzzle[x, y];
+                    }
+                    _uniqueSolutionCount = 0;
+                }
+
+            }
+            _puzzleStart = board;
+        }
+
+        private void Solve(int[,] board)
+        {
+            int x, y;
+            if (FindNextZero(out x, out y, board))
+            {
+                for (int num = 0; num < _size; num++)
+                {
+                    if (isValidPlacement(board, x, y, num))
+                    {
+                        board[x, y] = num;
+                        Solve(board);
                     }
                 }
-                int num = QToTry[qIndex];
-                QTried.Add(num);
+                board[x, y] = 0;
+            }
+            else
+            {
+                _uniqueSolutionCount++;
+            }
+        }
 
+        private bool FindNextZero(out int x, out int y, int[,] board)
+        {
+            x = 0; y = 0;
+            while (x < _size)
+            {
+                while (y < _size)
+                {
+                    if (board[x, y] == 0)
+                    {
+                        return true;
+                    }
+                    y++;
+                }
+                x++;
+            }
+            return false;
+        }
+        private void InitializeNums()
+        {
+            _nums = new int[_size];
+            for (int i = 0; i < _size; i++)
+            {
+                _nums[i] = i + 1;
+            }
+            Random random = new Random();
+            _nums = _nums.OrderBy(x => random.Next()).ToArray();
+        }
+
+        private void PlaceNum(int x, int y, int[,] board)
+        {
+            if (x == _size)
+            {
+                _completePuzzle = board;
+                _isComplete = true;
+                return;
+            } // base case
+            foreach (int num in _nums)
+            {
                 if (isValidPlacement(board, x, y, num))
                 {
-                    board[x, y] = num; // proposed placement valid, actually place in grid
-                    QToTry.Remove(num); // removes the used num from the list
-                    if (y == 8) // place in start of next row
+                    board[x, y] = num;
+
+                    // number has been placed and the board is not yet complete
+                    // recursively call PlaceNum to place the next num
+                    if (y == _size - 1)
                     {
-                        PlaceNum(x + 1, 0, RandomOneThroughNine(), new List<int>(), board); // todo: new instance of Q
+                        PlaceNum(x + 1, 0, board); // go to next row
                     }
-                    else // place in next column
+                    else
                     {
-                        List<int> QToTryCopy = new List<int>(QToTry);
-                        PlaceNum(x, y + 1, QToTryCopy, new List<int>(), board); // todo: new instance of Q
+                        PlaceNum(x, y + 1, board); // go to next column
                     }
+                    if (_isComplete)
+                        return;
                 }
-                if (_isComplete) // solution found and recorded, pop the call stack
-                {
-                    return;
-                }
-                // if not valid placement, or if recursive call to PlaceNum() backtracks to here, test next num in QToTry
+                // either not valid placement, or a recursive return
+                // either way, try the next number in _nums
             }
-            return; // Tried all nums in Q without success, backtrack
+            // no valid numbers in _nums, backtrack
+            board[x, y] = 0; // unset value before backtracking
         }
 
-        private bool IsComplete(int[,] board)
-        {
-            foreach (int entry in board)
-            {
-                if (entry == 0)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
+        // ----------- PlaceNum Helpers ---------------
 
-        /// <summary>
-        /// Use to instantiate Q in PlaceNum()
-        /// </summary>
-        /// <returns></returns>
-        private List<int> RandomOneThroughNine()
-        {
-            int[] numbers = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            numbers = numbers.OrderBy(v => _random.Next()).ToArray();
-            List<int> numbersList = numbers.ToList<int>(); 
-            return numbersList;
-        }
-
-        /// <summary>
-        /// Check before placing value in gridsquare
-        /// Calls UsedInRow(), UsedInColumn(), UsedInSquare();
-        /// </summary>
-        /// <param name="board"></param>
-        /// <param name="row"></param>
-        /// <param name="col"></param>
-        /// <param name="num"></param>
-        /// <returns></returns>
         private bool isValidPlacement(int[,] board, int row, int col, int num)
         {
             if (UsedInRow(board, num, row) || UsedInColumn(board, num, col) || UsedInSquare(board, num, row, col))
@@ -129,10 +154,9 @@ namespace Sudoku
                 return true;
         }
 
-
         private bool UsedInRow(int[,] board, int num, int row)
         {
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < _size; i++)
             {
                 if (board[row, i] == num)
                 {
@@ -144,7 +168,7 @@ namespace Sudoku
 
         private bool UsedInColumn(int[,] board, int num, int col)
         {
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < _size; i++)
             {
                 if (board[i, col] == num)
                     return true;
@@ -154,11 +178,12 @@ namespace Sudoku
 
         private bool UsedInSquare(int[,] board, int num, int row, int col)
         {
-            int startRow = (row / 3) * 3;
-            int startCol = (col / 3) * 3;
-            for (int i = 0; i < 3; i++)
+            int sqrtBoardLength = (int)Math.Sqrt(_size);
+            int startRow = (row / sqrtBoardLength) * sqrtBoardLength;
+            int startCol = (col / sqrtBoardLength) * sqrtBoardLength;
+            for (int i = 0; i < sqrtBoardLength; i++)
             {
-                for (int j = 0; j < 3; j++)
+                for (int j = 0; j < sqrtBoardLength; j++)
                 {
                     if (board[startRow + i, startCol + j] == num)
                         return true;
@@ -166,119 +191,6 @@ namespace Sudoku
             }
             return false;
         }
-
-
-        /*
-        private int[,] CreatePuzzleSolved()
-        {
-            int[,] puzzleSolved = new int[9, 9];
-            for (int i = 0; i < 9; i++)
-            {
-                List<int> numbers = new List<int>();
-
-                for (int j = 0; j < 9; j++)
-                {
-                    // choose random number
-                    // check if number works
-                    // if it doesn't work, pick new random number and try again
-
-                    // Optimization: have some datastructure that holds 1-9 and remembers which ones have been used in this row already
-                    bool squareNotFilled = true;
-                     
-
-                    while (squareNotFilled)
-                    {
-                        int rand = _random.Next(1, 10);
-                        if (!numbers.Contains(rand) && !UsedInRow(puzzleSolved, rand, i) && 
-                            !UsedInColumn(puzzleSolved, rand, j) && !UsedInSquare(puzzleSolved, rand, i, j))
-                        {
-                            numbers.Add(rand);
-                            puzzleSolved[i, j] = rand;
-                            squareNotFilled = false;
-                        }
-
-                    }
-
-                }
-            }
-            // console output testing
-            for(int i = 0; i < 9; i++)
-            {
-                Console.WriteLine();
-                for(int j = 0; j < 9; j++)
-                {
-                    Console.Write(_fullPuzzle.GetValue(i, j).ToString() + " ");
-                }
-            }
-            return puzzleSolved;
-        }
-
-
-        */
-        //private int[,] createPuzzleStart()
-        //{
-        //    /* Loop{
-        //     * remove entry random
-        //     * if(!puzzle has exactly one solution)
-        //     *  replace entry, try again
-        //     * when(enough entries are removed)
-        //     *  end loop}
-        //     * return workingPuzzle
-        //     */
-        //    int[,] workingPuzzle = new int[9,9];
-        //    workingPuzzle = _fullPuzzle;
-        //    int numberOfEntries = 81;
-        //    int difficulty = 30; // adjust to set difficulty level
-        //    while(numberOfEntries > difficulty)
-        //    {
-        //        // pick random entry
-        //        int row = _random.Next(1, 10);
-        //        int col = _random.Next(1, 10);
-
-        //        // remove and remember value
-        //        int rememberValue = workingPuzzle[row, col];
-        //        workingPuzzle[row, col] = 0;
-
-        //        // test if removing that value is valid
-        //        if (ExactlyOneSolutionExists(workingPuzzle))
-        //        {
-        //            numberOfEntries--;
-        //        }
-        //        else
-        //        {
-        //            workingPuzzle[row, col] = rememberValue;
-        //        }
-        //    }
-        //    return workingPuzzle;
-        //}
-
-        //private bool ExactlyOneSolutionExists(int[,] workingPuzzle) // todo: this only finds one solution, refactor to find multiple solutions
-        //{
-        //    for (int row = 0; row < 9; row++)
-        //    {
-        //        for (int col = 0; col < 9; col++)
-        //        {
-        //            if(workingPuzzle[row, col] == 0)
-        //            {
-        //                // pick random number for entry
-        //                // test if entry valid
-        //                // if valid, insert into workingpuzzle
-        //                // if not valid, try new random number
-        //                bool entryNotFound = true;
-        //                while (entryNotFound)
-        //                {
-        //                    int rand = _random.Next(1, 9);
-        //                    if (isValidPlacement(workingPuzzle, row, col, rand))
-        //                    {
-        //                        workingPuzzle[row, col] = rand;
-        //                        entryNotFound = false;
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //    return true;
-        //}
 
     }
 }

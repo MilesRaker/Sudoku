@@ -128,8 +128,6 @@
       <DependentUpon>PuzzleFrame.xaml</DependentUpon>
     </Compile>
     <Compile Include="PuzzleManager.cs" />
-    <Compile Include="PuzzleReduced.cs" />
-    <Compile Include="PuzzleSolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
