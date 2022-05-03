@@ -35,7 +35,12 @@ namespace Sudoku
 
             //    }
             //}
+            //private static PuzzleManager puzzle = new PuzzleManager(9);
 
+            //int value = puzzle.Generator.FullPuzzle[0, 0];
+            //string path = $"/icons/set 2/asset {value.ToString()}";
+
+            //grid00.Source = path;
         }
     }
 }

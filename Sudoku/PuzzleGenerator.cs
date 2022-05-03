@@ -14,18 +14,16 @@ namespace Sudoku
          */
 
         private int[,] _fullPuzzle;
-        //private Random _random = new Random();
+        public int[,] FullPuzzle { get { return _fullPuzzle; } }
         private bool _isComplete = false;
         private int[] _nums;
         private int _size;
+        public int Size { get { return _size; } }
         public PuzzleGenerator(int size)
         {
-            // _difficultyLevel = difficultyLevel; // future feature
             _size = size;
             InitializeNums();
             PlaceNum(0, 0, new int[_size, _size]);
-            
-            while (true) { }
         }
 
         private void InitializeNums()
@@ -51,11 +49,11 @@ namespace Sudoku
             {
                 if (isValidPlacement(board, x, y, num))
                 {
-                    board[x,y] = num;
+                    board[x, y] = num;
 
                     // number has been placed and the board is not yet complete
                     // recursively call PlaceNum to place the next num
-                    if(y == _size - 1)
+                    if (y == _size - 1)
                     {
                         PlaceNum(x + 1, 0, board); // go to next row
                     }
@@ -74,17 +72,6 @@ namespace Sudoku
         }
 
         // ----------- PlaceNum Helpers ---------------
-
-        //private bool IsComplete(int[,] board)
-        //{
-        //    // if the last entry is zero, board not complete
-
-        //    if(board[_size - 1, _size - 1] == 0) 
-        //    { return false; }
-        //    _isComplete = true;
-        //    return true;
-            
-        //}
 
         private bool isValidPlacement(int[,] board, int row, int col, int num)
         {
@@ -119,12 +106,8 @@ namespace Sudoku
         private bool UsedInSquare(int[,] board, int num, int row, int col)
         {
             int sqrtBoardLength = (int)Math.Sqrt(_size);
-            // 7/3 = 2  2*3 = 6
             int startRow = (row / sqrtBoardLength) * sqrtBoardLength;
-            // 7 / 3 = 2 2* 3 = 6
-            // 8 / 3 = 3 2*3=6
-            // (0,0) , (0,3), (0,6), (3,0), (3, 3)...
-            int startCol = (col / sqrtBoardLength) * sqrtBoardLength; // using modulus now
+            int startCol = (col / sqrtBoardLength) * sqrtBoardLength;
             for (int i = 0; i < sqrtBoardLength; i++)
             {
                 for (int j = 0; j < sqrtBoardLength; j++)

@@ -41,6 +41,6 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
             <!--<Image Name="firstGirdSquare" Grid.Row="0" Grid.Column="0" Source="./Icons/Set1/Asset 9" />-->
-
+        <Image Name="grid00" />
     </Grid>
 </Page>

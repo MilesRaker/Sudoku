@@ -26,7 +26,8 @@ namespace Sudoku
         {
             this.InitializeComponent();
             WorkingPuzzle.Navigate(typeof (PuzzleFrame), null);
-            PuzzleGenerator puzzle = new PuzzleGenerator(9);
+            PuzzleManager puzzle = new PuzzleManager(9);
+            while (true) { };
         }
     }
 }
