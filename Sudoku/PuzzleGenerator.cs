@@ -9,23 +9,96 @@ namespace Sudoku
     public class PuzzleGenerator
     {
         /*  -------PuzzleGenerator-------
-         * This class builds 9 x 9 Sudoku puzzles
+         * This class builds N x N Sudoku puzzles
          * Every gridsquare is filled with valid numbers
          */
+        public int[,] PuzzleStart { get { return _puzzleStart; } }
+        public int[,] CompletePuzzle { get { return _completePuzzle; } }
 
-        private int[,] _fullPuzzle;
-        public int[,] FullPuzzle { get { return _fullPuzzle; } }
+        private int[,] _puzzleStart;
+        private Random _random = new Random();
+        private int _uniqueSolutionCount = 0;
+
+        //
+        private int[,] _completePuzzle;
         private bool _isComplete = false;
         private int[] _nums;
         private int _size;
-        public int Size { get { return _size; } }
-        public PuzzleGenerator(int size)
+        public PuzzleGenerator(int size, int difficulty)
         {
             _size = size;
             InitializeNums();
             PlaceNum(0, 0, new int[_size, _size]);
+            int[,] arrayCopy = new int[_size, _size];
+            Array.Copy(_completePuzzle, arrayCopy, _size * _size);
+            CreatePuzzleStart(arrayCopy, difficulty);
         }
 
+        private void CreatePuzzleStart(int[,] board, int difficulty)
+        {
+            int i = 0;
+            while (i < difficulty)
+            {
+                int x = _random.Next(0, 9);
+                int y = _random.Next(0, 9);
+                if (board[x, y] != 0)
+                {
+                    board[x, y] = 0;
+
+                    Solve(board);
+                    if (_uniqueSolutionCount == 1)
+                    {
+                        i++;
+                    }
+                    else
+                    {
+                        board[x, y] = _completePuzzle[x, y];
+                    }
+                    _uniqueSolutionCount = 0;
+                }
+
+            }
+            _puzzleStart = board;
+        }
+
+        private void Solve(int[,] board)
+        {
+            int x, y;
+            if (FindNextZero(out x, out y, board))
+            {
+                for (int num = 0; num < _size; num++)
+                {
+                    if (isValidPlacement(board, x, y, num))
+                    {
+                        board[x, y] = num;
+                        Solve(board);
+                    }
+                }
+                board[x, y] = 0;
+            }
+            else
+            {
+                _uniqueSolutionCount++;
+            }
+        }
+
+        private bool FindNextZero(out int x, out int y, int[,] board)
+        {
+            x = 0; y = 0;
+            while (x < _size)
+            {
+                while (y < _size)
+                {
+                    if (board[x, y] == 0)
+                    {
+                        return true;
+                    }
+                    y++;
+                }
+                x++;
+            }
+            return false;
+        }
         private void InitializeNums()
         {
             _nums = new int[_size];
@@ -41,7 +114,7 @@ namespace Sudoku
         {
             if (x == _size)
             {
-                _fullPuzzle = board;
+                _completePuzzle = board;
                 _isComplete = true;
                 return;
             } // base case

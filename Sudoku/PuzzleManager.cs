@@ -14,15 +14,13 @@ namespace Sudoku
          * Methods compare the current state of the puzzle to the solved version
          * 
          */
-        private PuzzleGenerator _generator;
         public PuzzleGenerator Generator { get { return _generator; } }
-        private PuzzleReduced _reduced;
+        private PuzzleGenerator _generator;
 
-        public PuzzleManager(int size)
+
+        public PuzzleManager(int size, int difficulty)
         {
-            _generator = new PuzzleGenerator(size);
-            _reduced = new PuzzleReduced(_generator);
-            while (true) { };
+            _generator = new PuzzleGenerator(size, difficulty);
         }
     }
 }
