@@ -14,6 +14,7 @@ namespace Sudoku
          */
         public int[,] PuzzleStart { get { return _puzzleStart; } }
         public int[,] CompletePuzzle { get { return _completePuzzle; } }
+        public int Size { get { return _size; } }
 
         private int[,] _puzzleStart;
         private Random _random = new Random();

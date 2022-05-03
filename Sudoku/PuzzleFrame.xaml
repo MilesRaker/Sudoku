@@ -15,11 +15,15 @@
             - Maybe allow user to select an icon set and difficulty?
          PuzzleFrame does not include background images or window styling; this is the job of MainPage.xaml
     -->
-    <Grid >
+
+    <StackPanel Name="test">
+        
+    </StackPanel>
+    <!--<Grid >
 
    
         <Grid Grid.Row="1" Margin="0,100,80,150" Grid.RowSpan="2">
-            <!-- Create 9 x 9 Grid-->
+            --><!-- Create 9 x 9 Grid--><!--
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
@@ -45,254 +49,92 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
             
-            <!--<Base on puzzlemanager to setup icon inside cell>>-->
-            <StackPanel Grid.Row="0" Grid.Column="0">
-                <Image Name="Image00" Source="Icons/Set2/Asset 9.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="0" Grid.Column="1">
-                <Image Name="Image01" Source="Icons/Set2/Asset 6.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="0" Grid.Column="2">
-                <Image Name="Image02" Source="Icons/Set2/Asset 8.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="0" Grid.Column="3">
-                <Image Name="Image03"  Source="Icons/Set2/Asset 1.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="0" Grid.Column="4">
-                <Image Name="Image04" Source="Icons/Set2/Asset 3.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="0" Grid.Column="5">
-                <Image Name="Image05" Source="Icons/Set2/Asset 5.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="0" Grid.Column="6">
-                <Image Name="Image06" Source="Icons/Set2/Asset 2.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="0" Grid.Column="7">
-                <Image Name="Image07" Source="Icons/Set2/Asset 4.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="0" Grid.Column="8">
-                <Image Name="Image08" Source="Icons/Set2/Asset 7.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="0">
-                <Image Name="Image10" Source="Icons/Set2/Asset 1.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="1">
-                <Image Name="Image11" Source="Icons/Set2/Asset 3.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="2">
-                <Image Name="Image12" Source="Icons/Set2/Asset 7.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="3">
-                <Image Name="Image13" Source="Icons/Set2/Asset 8.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="4">
-                <Image Name="Image14" Source="Icons/Set2/Asset 4.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="5">
-                <Image Name="Image15" Source="Icons/Set2/Asset 2.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="6">
-                <Image Name="Image16" Source="Icons/Set2/Asset 9.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="7">
-                <Image Name="Image17" Source="Icons/Set2/Asset 5.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Grid.Column="8">
-                <Image Name="Image18" Source="Icons/Set2/Asset 6.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="2" Grid.Column="0">
-                <Image Name="Image20" Source="Icons/Set2/Asset 4.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="2" Grid.Column="1">
-                <Image Name="Image21" Source="Icons/Set2/Asset 2.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="2" Grid.Column="2">
-                <Image Name="Image22" Source="Icons/Set2/Asset 5.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="2" Grid.Column="3">
-                <Image Name="Image23" Source="Icons/Set2/Asset 9.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="2" Grid.Column="4">
-                <Image Name="Image24" Source="Icons/Set2/Asset 6.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="2" Grid.Column="5">
-                <Image Name="Image25" Source="Icons/Set2/Asset 7.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="2" Grid.Column="6">
-                <Image Name="Image26" Source="Icons/Set2/Asset 3.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="2" Grid.Column="7">
-                <Image Name="Image27" Source="Icons/Set2/Asset 8.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="2" Grid.Column="8">
-                <Image Name="Image28" Source="Icons/Set2/Asset 1.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="3" Grid.Column="0">
-                <Image Name="Image30" Source="Icons/Set2/Asset 7.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="3" Grid.Column="1">
-                <Image Name="Image31" Source="Icons/Set2/Asset 8.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="3" Grid.Column="2">
-                <Image Name="Image32" Source="Icons/Set2/Asset 2.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="3" Grid.Column="3">
-                <Image Name="Image33" Source="Icons/Set2/Asset 6.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="3" Grid.Column="4">
-                <Image Name="Image34" Source="Icons/Set2/Asset 1.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="3" Grid.Column="5">
-                <Image Name="Image35" Source="Icons/Set2/Asset 3.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="3" Grid.Column="6">
-                <Image Name="Image36" Source="Icons/Set2/Asset 4.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="3" Grid.Column="7">
-                <Image Name="Image37" Source="Icons/Set2/Asset 9.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="3" Grid.Column="8">
-                <Image Name="Image38" Source="Icons/Set2/Asset 5.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="4" Grid.Column="0">
-                <Image Name="Image40" Source="Icons/Set2/Asset 3.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="4" Grid.Column="1">
-                <Image Name="Image41" Source="Icons/Set2/Asset 1.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="4" Grid.Column="2">
-                <Image Name="Image42" Source="Icons/Set2/Asset 4.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="4" Grid.Column="3">
-                <Image Name="Image43" Source="Icons/Set2/Asset 5.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="4" Grid.Column="4">
-                <Image Name="Image44" Source="Icons/Set2/Asset 9.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="4" Grid.Column="5">
-                <Image Name="Image45" Source="Icons/Set2/Asset 6.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="4" Grid.Column="6">
-                <Image Name="Image46" Source="Icons/Set2/Asset 7.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="4" Grid.Column="7">
-                <Image Name="Image47" Source="Icons/Set2/Asset 6.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="4" Grid.Column="8">
-                <Image Name="Image48" Source="Icons/Set2/Asset 2.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="5" Grid.Column="0">
-                <Image Name="Image50" Source="Icons/Set2/Asset 5.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="5" Grid.Column="1">
-                <Image Name="Image51" Source="Icons/Set2/Asset 9.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="5" Grid.Column="2">
-                <Image Name="Image52" Source="Icons/Set2/Asset 6.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="5" Grid.Column="3">
-                <Image Name="Image53" Source="Icons/Set2/Asset 2.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="5" Grid.Column="4">
-                <Image Name="Image54" Source="Icons/Set2/Asset 7.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="5" Grid.Column="5">
-                <Image Name="Image55" Source="Icons/Set2/Asset 4.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="5" Grid.Column="6">
-                <Image Name="Image56" Source="Icons/Set2/Asset 8.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="5" Grid.Column="7">
-                <Image Name="Image57" Source="Icons/Set2/Asset 1.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="5" Grid.Column="8">
-                <Image Name="Image58" Source="Icons/Set2/Asset 3.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="6" Grid.Column="0">
-                <Image Name="Image60" Source="Icons/Set2/Asset 8.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="6" Grid.Column="1">
-                <Image Name="Image61" Source="Icons/Set2/Asset 7.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="6" Grid.Column="2">
-                <Image Name="Image62" Source="Icons/Set2/Asset 9.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="6" Grid.Column="3">
-                <Image Name="Image63" Source="Icons/Set2/Asset 3.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="6" Grid.Column="4">
-                <Image Name="Image64" Source="Icons/Set2/Asset 5.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="6" Grid.Column="5">
-                <Image Name="Image65" Source="Icons/Set2/Asset 1.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="6" Grid.Column="6">
-                <Image Name="Image66" Source="Icons/Set2/Asset 6.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="6" Grid.Column="7">
-                <Image Name="Image67" Source="Icons/Set2/Asset 2.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="6" Grid.Column="8">
-                <Image Name="Image68" Source="Icons/Set2/Asset 4.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="7" Grid.Column="0">
-                <Image Name="Image70" Source="Icons/Set2/Asset 6.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="7" Grid.Column="1">
-                <Image Name="Image71" Source="Icons/Set2/Asset 4.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="7" Grid.Column="2">
-                <Image Name="Image72" Source="Icons/Set2/Asset 1.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="7" Grid.Column="3">
-                <Image Name="Image73" Source="Icons/Set2/Asset 7.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="7" Grid.Column="4">
-                <Image Name="Image74" Source="Icons/Set2/Asset 2.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="7" Grid.Column="5">
-                <Image Name="Image75" Source="Icons/Set2/Asset 9.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="7" Grid.Column="6">
-                <Image Name="Image76" Source="Icons/Set2/Asset 5.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="7" Grid.Column="7">
-                <Image Name="Image77" Source="Icons/Set2/Asset 3.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="7" Grid.Column="8">
-                <Image Name="Image78" Source="Icons/Set2/Asset 8.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="8" Grid.Column="0">
-                <Image Name="Image80" Source="Icons/Set2/Asset 2.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="8" Grid.Column="1">
-                <Image Name="Image81" Source="Icons/Set2/Asset 5.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="8" Grid.Column="2">
-                <Image Name="Image82" Source="Icons/Set2/Asset 3.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="8" Grid.Column="3">
-                <Image Name="Image83" Source="Icons/Set2/Asset 4.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="8" Grid.Column="4">
-                <Image Name="Image84" Source="Icons/Set2/Asset 8.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="8" Grid.Column="5">
-                <Image Name="Image85" Source="Icons/Set2/Asset 6.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="8" Grid.Column="6">
-                <Image Name="Image86" Source="Icons/Set2/Asset 1.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="8" Grid.Column="7">
-                <Image Name="Image87" Source="Icons/Set2/Asset 7.svg"/>
-            </StackPanel>
-            <StackPanel Grid.Row="8" Grid.Column="8">
-                <Image Name="Image88" Source="Icons/Set2/Asset 9.svg"/>
-            </StackPanel>
+            --><!--<Base on puzzlemanager to setup icon inside cell>>-->
+            
+            <!--<Image Grid.Row="0" Grid.Column="0" Name="Image00" />
+            <Image Grid.Row="0" Grid.Column="1" Name="Image01" Source="Icons/Set2/Asset 6.svg"/>
+            <Image Grid.Row="0" Grid.Column="2" Name="Image02" Source="Icons/Set2/Asset 8.svg"/>
+            <Image Grid.Row="0" Grid.Column="3" Name="Image03" Source="Icons/Set2/Asset 1.svg"/>
+            <Image Grid.Row="0" Grid.Column="4" Name="Image04" Source="Icons/Set2/Asset 3.svg"/>
+            <Image Grid.Row="0" Grid.Column="5" Name="Image05" Source="Icons/Set2/Asset 5.svg"/>
+            <Image Grid.Row="0" Grid.Column="6" Name="Image06" Source="Icons/Set2/Asset 2.svg"/>
+            <Image Grid.Row="0" Grid.Column="7" Name="Image07" Source="Icons/Set2/Asset 4.svg"/>
+            <Image Grid.Row="0" Grid.Column="8" Name="Image08" Source="Icons/Set2/Asset 7.svg"/>
+            <Image Grid.Row="1" Grid.Column="0" Name="Image10" Source="Icons/Set2/Asset 1.svg"/>
+            <Image Grid.Row="1" Grid.Column="1" Name="Image11" Source="Icons/Set2/Asset 3.svg"/>
+            <Image Grid.Row="1" Grid.Column="2" Name="Image12" Source="Icons/Set2/Asset 7.svg"/>
+            <Image Grid.Row="1" Grid.Column="3" Name="Image13" Source="Icons/Set2/Asset 8.svg"/>
+            <Image Grid.Row="1" Grid.Column="4" Name="Image14" Source="Icons/Set2/Asset 4.svg"/>
+            <Image Grid.Row="1" Grid.Column="5" Name="Image15" Source="Icons/Set2/Asset 2.svg"/>
+            <Image Grid.Row="1" Grid.Column="6" Name="Image16" Source="Icons/Set2/Asset 9.svg"/>
+            <Image Grid.Row="1" Grid.Column="7" Name="Image17" Source="Icons/Set2/Asset 5.svg"/>
+            <Image Grid.Row="1" Grid.Column="8" Name="Image18" Source="Icons/Set2/Asset 6.svg"/>
+            <Image Grid.Row="2" Grid.Column="0" Name="Image20" Source="Icons/Set2/Asset 4.svg"/>
+            <Image Grid.Row="2" Grid.Column="1" Name="Image21" Source="Icons/Set2/Asset 2.svg"/>
+            <Image Grid.Row="2" Grid.Column="2" Name="Image22" Source="Icons/Set2/Asset 5.svg"/>
+            <Image Grid.Row="2" Grid.Column="3" Name="Image23" Source="Icons/Set2/Asset 9.svg"/>
+            <Image Grid.Row="2" Grid.Column="4" Name="Image24" Source="Icons/Set2/Asset 6.svg"/>
+            <Image Grid.Row="2" Grid.Column="5" Name="Image25" Source="Icons/Set2/Asset 7.svg"/>
+            <Image Grid.Row="2" Grid.Column="6" Name="Image26" Source="Icons/Set2/Asset 3.svg"/>
+            <Image Grid.Row="2" Grid.Column="7" Name="Image27" Source="Icons/Set2/Asset 8.svg"/>
+            <Image Grid.Row="2" Grid.Column="8" Name="Image28" Source="Icons/Set2/Asset 1.svg"/>
+            <Image Grid.Row="3" Grid.Column="0" Name="Image30" Source="Icons/Set2/Asset 7.svg"/>
+            <Image Grid.Row="3" Grid.Column="1" Name="Image31" Source="Icons/Set2/Asset 8.svg"/>
+            <Image Grid.Row="3" Grid.Column="2" Name="Image32" Source="Icons/Set2/Asset 2.svg"/>
+            <Image Grid.Row="3" Grid.Column="3" Name="Image33" Source="Icons/Set2/Asset 6.svg"/>
+            <Image Grid.Row="3" Grid.Column="4" Name="Image34" Source="Icons/Set2/Asset 1.svg"/>
+            <Image Grid.Row="3" Grid.Column="5" Name="Image35" Source="Icons/Set2/Asset 3.svg"/>
+            <Image Grid.Row="3" Grid.Column="6" Name="Image36" Source="Icons/Set2/Asset 4.svg"/>
+            <Image Grid.Row="3" Grid.Column="7" Name="Image37" Source="Icons/Set2/Asset 9.svg"/>
+            <Image Grid.Row="3" Grid.Column="8" Name="Image38" Source="Icons/Set2/Asset 5.svg"/>
+            <Image Grid.Row="4" Grid.Column="0" Name="Image40" Source="Icons/Set2/Asset 3.svg"/>
+            <Image Grid.Row="4" Grid.Column="1" Name="Image41" Source="Icons/Set2/Asset 1.svg"/>
+            <Image Grid.Row="4" Grid.Column="2" Name="Image42" Source="Icons/Set2/Asset 4.svg"/>
+            <Image Grid.Row="4" Grid.Column="3" Name="Image43" Source="Icons/Set2/Asset 5.svg"/>
+            <Image Grid.Row="4" Grid.Column="4" Name="Image44" Source="Icons/Set2/Asset 9.svg"/>
+            <Image Grid.Row="4" Grid.Column="5" Name="Image45" Source="Icons/Set2/Asset 6.svg"/>
+            <Image Grid.Row="4" Grid.Column="6" Name="Image46" Source="Icons/Set2/Asset 7.svg"/>
+            <Image Grid.Row="4" Grid.Column="7" Name="Image47" Source="Icons/Set2/Asset 6.svg"/>
+            <Image Grid.Row="4" Grid.Column="8" Name="Image48" Source="Icons/Set2/Asset 2.svg"/>
+            <Image Grid.Row="5" Grid.Column="0" Name="Image50" Source="Icons/Set2/Asset 5.svg"/>
+            <Image Grid.Row="5" Grid.Column="1" Name="Image51" Source="Icons/Set2/Asset 9.svg"/>
+            <Image Grid.Row="5" Grid.Column="2" Name="Image52" Source="Icons/Set2/Asset 6.svg"/>
+            <Image Grid.Row="5" Grid.Column="3" Name="Image53" Source="Icons/Set2/Asset 2.svg"/>
+            <Image Grid.Row="5" Grid.Column="4" Name="Image54" Source="Icons/Set2/Asset 7.svg"/>
+            <Image Grid.Row="5" Grid.Column="5" Name="Image55" Source="Icons/Set2/Asset 4.svg"/>
+            <Image Grid.Row="5" Grid.Column="6" Name="Image56" Source="Icons/Set2/Asset 8.svg"/>
+            <Image Grid.Row="5" Grid.Column="7" Name="Image57" Source="Icons/Set2/Asset 1.svg"/>
+            <Image Grid.Row="5" Grid.Column="8" Name="Image58" Source="Icons/Set2/Asset 3.svg"/>
+            <Image Grid.Row="6" Grid.Column="0" Name="Image60" Source="Icons/Set2/Asset 8.svg"/>
+            <Image Grid.Row="6" Grid.Column="1" Name="Image61" Source="Icons/Set2/Asset 7.svg"/>
+            <Image Grid.Row="6" Grid.Column="2" Name="Image62" Source="Icons/Set2/Asset 9.svg"/>
+            <Image Grid.Row="6" Grid.Column="3" Name="Image63" Source="Icons/Set2/Asset 3.svg"/>
+            <Image Grid.Row="6" Grid.Column="4" Name="Image64" Source="Icons/Set2/Asset 5.svg"/>
+            <Image Grid.Row="6" Grid.Column="5" Name="Image65" Source="Icons/Set2/Asset 1.svg"/>
+            <Image Grid.Row="6" Grid.Column="6" Name="Image66" Source="Icons/Set2/Asset 6.svg"/>
+            <Image Grid.Row="6" Grid.Column="7" Name="Image67" Source="Icons/Set2/Asset 2.svg"/>
+            <Image Grid.Row="6" Grid.Column="8" Name="Image68" Source="Icons/Set2/Asset 4.svg"/>
+            <Image Grid.Row="7" Grid.Column="0" Name="Image70" Source="Icons/Set2/Asset 6.svg"/>
+            <Image Grid.Row="7" Grid.Column="1" Name="Image71" Source="Icons/Set2/Asset 4.svg"/>
+            <Image Grid.Row="7" Grid.Column="2" Name="Image72" Source="Icons/Set2/Asset 1.svg"/>
+            <Image Grid.Row="7" Grid.Column="3" Name="Image73" Source="Icons/Set2/Asset 7.svg"/>
+            <Image Grid.Row="7" Grid.Column="4" Name="Image74" Source="Icons/Set2/Asset 2.svg"/>
+            <Image Grid.Row="7" Grid.Column="5" Name="Image75" Source="Icons/Set2/Asset 9.svg"/>
+            <Image Grid.Row="7" Grid.Column="6" Name="Image76" Source="Icons/Set2/Asset 5.svg"/>
+            <Image Grid.Row="7" Grid.Column="7" Name="Image77" Source="Icons/Set2/Asset 3.svg"/>
+            <Image Grid.Row="7" Grid.Column="8" Name="Image78" Source="Icons/Set2/Asset 8.svg"/>
+            <Image Grid.Row="8" Grid.Column="0" Name="Image80" Source="Icons/Set2/Asset 2.svg"/>
+            <Image Grid.Row="8" Grid.Column="1" Name="Image81" Source="Icons/Set2/Asset 5.svg"/>
+            <Image Grid.Row="8" Grid.Column="2" Name="Image82" Source="Icons/Set2/Asset 3.svg"/>
+            <Image Grid.Row="8" Grid.Column="3" Name="Image83" Source="Icons/Set2/Asset 4.svg"/>
+            <Image Grid.Row="8" Grid.Column="4" Name="Image84" Source="Icons/Set2/Asset 8.svg"/>
+            <Image Grid.Row="8" Grid.Column="5" Name="Image85" Source="Icons/Set2/Asset 6.svg"/>
+            <Image Grid.Row="8" Grid.Column="6" Name="Image86" Source="Icons/Set2/Asset 1.svg"/>
+            <Image Grid.Row="8" Grid.Column="7" Name="Image87" Source="Icons/Set2/Asset 7.svg"/>
+            <Image Grid.Row="8" Grid.Column="8" Name="Image88" Source="Icons/Set2/Asset 9.svg"/>--><!--
+            
             <StackPanel Grid.Row="0" Grid.Column="9">
                 <TextBlock Text="Difficulty Level:" Height="40" Margin="0,12,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                
-
             </StackPanel>
             <StackPanel Grid.Row="1" Grid.Column="9">
                 <ComboBox Name="GameLevel" HorizontalAlignment="Left" VerticalAlignment="Top" ItemsSource="{Binding}" SelectedIndex="0" Width="150"/>
@@ -301,5 +143,5 @@
         </Grid>
         
 
-    </Grid>
+    </Grid>-->
 </Page>
