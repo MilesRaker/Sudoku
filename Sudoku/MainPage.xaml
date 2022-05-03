@@ -9,20 +9,21 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="15*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="1">
-            <Image Source="Assets/Background.jpg" Stretch="Fill" Margin="0,0,0,-332"  />
+            <Image Source="Assets/Background.jpg" HorizontalAlignment="Center" Stretch="UniformToFill" Margin="0"  />
             <Image Name="Logo" Source="Assets/sukocatslogo.jpg" Width="300" VerticalAlignment="Top" Height="135" />
         </Grid>
 
         <!--<make 9 icon to let user know what we have>-->
         
-        <Grid Grid.Row="2" Margin="2,325,2,2">
+        <Grid Grid.Row="2" VerticalAlignment="Bottom">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
@@ -79,12 +80,7 @@
             <MenuBarItem Title="Edit"/>
             <MenuBarItem Title="Create"/>
         </MenuBar>
-        <Frame Grid.Row="1" x:Name="WorkingPuzzle"/>
-        
-
-
-       
-        
+        <Frame Grid.Row="1" x:Name="WorkingPuzzle"/>       
     </Grid>
     
 </Page>
