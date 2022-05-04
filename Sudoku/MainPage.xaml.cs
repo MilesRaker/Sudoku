@@ -25,7 +25,41 @@ namespace Sudoku
         public MainPage()
         {
             this.InitializeComponent();
-            WorkingPuzzle.Navigate(typeof (PuzzleFrame), null);
+            Back.Visibility = Visibility.Collapsed;
+            MyFrame.Navigate(typeof(WilliamSudoku));
+            Welcome.IsSelected = true;
+            //WorkingPuzzle.Navigate(typeof(PuzzleFrame), null);
+            //PuzzleGenerator puzzle = new PuzzleGenerator();
+        }
+
+        private void HamburgerButton_Click(object sender, RoutedEventArgs e)
+        {
+            MySplitView.IsPaneOpen=!MySplitView.IsPaneOpen;
+        }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            if (MyFrame.CanGoBack)
+            {
+                MyFrame.GoBack();
+                Welcome.IsSelected = true;
+            }
+        }
+
+        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Welcome.IsSelected)
+            {
+                Back.Visibility = Visibility.Collapsed;
+                MyFrame.Navigate(typeof(WilliamSudoku));
+                Titletext.Text = "Welcome to William's Game Room";
+            }
+            else if (Game.IsSelected)
+            {
+                Back.Visibility = Visibility.Visible;
+                MyFrame.Navigate(typeof(PuzzleFrame));
+                Titletext.Text = "SudokuCat for kids";
+            }
         }
     }
 }

@@ -9,8 +9,59 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*"/>
 
-        <Grid.RowDefinitions>
+            </Grid.RowDefinitions>
+            <RelativePanel>
+                <Button Name="HamburgerButton" 
+                    RelativePanel.AlignLeftWithPanel="True" 
+                    FontFamily="Segoe MDL2 Assets" 
+                    FontSize="36"
+                    Content="&#xE700;"    
+                    Click="HamburgerButton_Click"/>
+                <Button Name="Back"
+                    RelativePanel.RightOf="HamburgerButton"
+                    FontFamily="Segoe MDl2 Assets" 
+                    FontSize="36"
+                    Content="&#xE0C4;"
+                    Click="Back_Click"/>
+                <TextBlock Name ="Titletext" RelativePanel.RightOf="Back" FontSize="28" FontWeight="Bold" Margin="20,5,0,0" />
+            <!--<Button Name="Game" RelativePanel.AlignRightWithPanel="True" FontFamily="Segoe MDL2 Assets" FontSize="36" Content="&#xE1A3;"/>-->
+
+
+            </RelativePanel>
+            <SplitView Grid.Row="1" Name="MySplitView" DisplayMode="CompactOverlay" OpenPaneLength="200" CompactPaneLength="56">
+                <SplitView.Pane>
+                    <ListBox SelectionMode="Single"
+                             SelectionChanged="ListBox_SelectionChanged">
+                        <ListBoxItem Name="Welcome">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE80F;" />
+                                <TextBlock FontSize="24" Margin="20,0,0,0">Welcome</TextBlock>
+                            </StackPanel>
+                        </ListBoxItem>
+                        <ListBoxItem Name="Game">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock FontFamily="Segoe MDL2 Assets" FontSize="36" Text="&#xE1CE;" />
+                                <TextBlock FontSize="24" Margin="20,0,0,0">Game</TextBlock>
+                            </StackPanel>
+                        </ListBoxItem>
+                    </ListBox>
+                </SplitView.Pane>
+                <SplitView.Content>
+                    <Frame Name="MyFrame">
+
+                    </Frame>
+                </SplitView.Content>
+            </SplitView>
+
+        </Grid>
+    </Grid>
+
+    <!--<Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="15*"/>
             <RowDefinition Height="*"/>
@@ -21,7 +72,7 @@
             <Image Name="Logo" Source="Assets/sukocatslogo.jpg" Width="300" VerticalAlignment="Top" Height="135" />
         </Grid>
 
-        <!--<make 9 icon to let user know what we have>-->
+        --><!--<make 9 icon to let user know what we have>--><!--
         
         <Grid Grid.Row="2" VerticalAlignment="Bottom">
             <Grid.ColumnDefinitions>
@@ -69,7 +120,7 @@
         </Grid>
         
 
-        <!-- Example menu bar: Edit as needed-->
+        --><!-- Example menu bar: Edit as needed--><!--
 
         <MenuBar Name="TopMenu">
             <MenuBarItem Title="File">
@@ -81,7 +132,7 @@
             <MenuBarItem Title="Create"/>
         </MenuBar>
         <Frame Grid.Row="1" x:Name="WorkingPuzzle"/>       
-    </Grid>
+    </Grid>-->
     
 </Page>
 
