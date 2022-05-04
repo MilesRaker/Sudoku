@@ -25,24 +25,33 @@ namespace Sudoku
     {
         private PuzzleManager _puzzle;
         private Image[,] _gridImages = new Image[9,9];
+        private int[,] _userInputs = new int[9, 9];
         private Image[,] _userInputImages = new Image[9, 9];
         private Flyout[,] _flyoutGrid = new Flyout[9,9];
         private Button[,] _buttonGrid = new Button[9,9];
         private Grid _board;
+        private int _setNum;
+        private int _difficulty;
+        private int _size;
 
-        // frame constructor
+        /// <summary>
+        /// Creates a puzzle frame
+        /// </summary>
+        /// <param name="parameters">int size, int setNum, int difficulty</param>
         public PuzzleFrame()
         {
-            _puzzle = new PuzzleManager(9, 25);
-            InitializeGridImages(2);
-            InitializeFlyoutPicker(2);
-            //InitializeUserInputImages();
+            _size = 9; // pass as parameter?
+            _setNum = 2; // pass as parameter?
+            _difficulty = 25; // pass as parameter?
+            _puzzle = new PuzzleManager(_size, _difficulty);
+            InitializeGridImages();
+            InitializeFlyoutPicker();
+            InitializeUserInputImages();
             InitializeButtonGrid();
 
             this.InitializeComponent();
             this.InitializeGrid();
 
-            //Image00.Source = new BitmapImage(new Uri("ms-appx:///Icons/Set2/Asset 9.svg")); 
         }
 
         private void InitializeButtonGrid()
@@ -57,24 +66,23 @@ namespace Sudoku
                     _buttonGrid[x, y].Flyout = _flyoutGrid[x,y];
                     Grid.SetRow(_buttonGrid[x, y], x);
                     Grid.SetColumn(_buttonGrid[x, y], y);
-                    // eventually the button will have flyout picker and image
                 }
             }
         }
 
-        private void InitializeFlyoutPicker(int setNum)
+        private void InitializeFlyoutPicker()
         {
             for (int x = 0; x < _puzzle.Generator.Size; x++)
             {
                 for (int y = 0; y < _puzzle.Generator.Size; y++)
                 {
                     _flyoutGrid[x, y] = new Flyout();
-                    _flyoutGrid[x, y].Content = InitializePickerGrid(setNum, x, y);
+                    _flyoutGrid[x, y].Content = InitializePickerGrid(x, y);
                 }
             }
         }
 
-        private Grid InitializePickerGrid(int setNum, int x, int y)
+        private Grid InitializePickerGrid(int x, int y)
         {
             Grid pickerGrid = new Grid();
             ColumnDefinition col0 = new ColumnDefinition();
@@ -96,7 +104,7 @@ namespace Sudoku
             pickerGrid.RowDefinitions.Add(row1);
             pickerGrid.RowDefinitions.Add(row2);
             Button[] pickerGridButtons = CreatePickerGridButtons(x, y);
-            Image[] pickerGridImages = CreatePickerGridImages(setNum);
+            Image[] pickerGridImages = CreatePickerGridImages(_setNum);
             for(int i = 0; i < pickerGridImages.Length; i++)
             {
                 // add a button child
@@ -108,26 +116,44 @@ namespace Sudoku
 
         private Button[] CreatePickerGridButtons(int x, int y)
         {
-            Button[] buttons = new Button[9]; // parameratirize the size
+            Button[] buttons = new Button[_size]; // parameratirize the size
             for (int i = 0; i < buttons.Length; i++)
             {
+                int index = i + 1;
                 buttons[i] = new Button();
                 Grid.SetRow(buttons[i], i / 3);
                 Grid.SetColumn(buttons[i], i % 3);
-                buttons[i].Click += (sender, e) => PickerClick(x,y,i);
+                buttons[i].Click += (sender, e) => PickerClick(x,y,index); 
             }
             return buttons;
         }
 
-        private void PickerClick(int x, int y, int i)
+        private void PickerClick(int x, int y, int index)
         {
             // place i into board[x, y]
             // userInput Image grid update
-            _puzzle.UserInputs[x, y] = i;
-            InitializeUserInputImages();
-            InitializeGrid();
+            _userInputs[x, y] = index;
+            _userInputImages[x, y].Source = new BitmapImage(new Uri($"ms-appx:///Icons/Set{2}/Asset {_userInputs[x, y]}.svg")); // todo: picks same image each go
+            //RenderUserInputImages(2);
         }
-
+        /// <summary>
+        /// updates _userInputImages array
+        /// </summary>
+        /// <param name="setNum"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        private void UpdateUserInputImages(int setNum)
+        {
+            throw new NotImplementedException();
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="setNum"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        private void RenderUserInputImages(int setNum)
+        {
+            throw new NotImplementedException();
+        }
 
         private Image[] CreatePickerGridImages(int setNum)
         {
@@ -197,11 +223,11 @@ namespace Sudoku
                     if (_puzzle.Generator.PuzzleStart[x, y] == 0)
                     {
                         _board.Children.Add(_buttonGrid[x, y]);
-                        _buttonGrid[x, y].Content = _gridImages[x, y]; // UserInput Images
+                        _buttonGrid[x, y].Content = _userInputImages[x, y]; // UserInput Images
                     }
                     else
                     {
-                        _board.Children.Add( _gridImages[x, y]);
+                        _board.Children.Add( _gridImages[x, y]); // error here, reassigning
                     }
                 }
             }
@@ -225,14 +251,14 @@ namespace Sudoku
             }
 
         }
-        private void InitializeGridImages(int setNum)
+        private void InitializeGridImages()
         {
             for (int x = 0; x < _puzzle.Generator.Size; x++)
             {
                 for (int y = 0; y < _puzzle.Generator.Size; y++)
                 {
                     _gridImages[x, y] = new Image(); 
-                    _gridImages[x, y].Source = new BitmapImage(new Uri($"ms-appx:///Icons/Set{setNum}/Asset {_puzzle.Generator.PuzzleStart[x, y]}.svg"));
+                    _gridImages[x, y].Source = new BitmapImage(new Uri($"ms-appx:///Icons/Set{_setNum}/Asset {_puzzle.Generator.PuzzleStart[x, y]}.svg"));
                     Grid.SetRow(_gridImages[x, y], x);
                     Grid.SetColumn(_gridImages[x, y], y);
                 }
@@ -245,7 +271,7 @@ namespace Sudoku
                 for (int y = 0; y < _puzzle.Generator.Size; y++)
                 {
                     _userInputImages[x, y] = new Image();
-                    _userInputImages[x, y].Source = new BitmapImage(new Uri($"ms-appx:///Icons/Set{_puzzle.UserInputs[x, y]}/Asset {_puzzle.Generator.PuzzleStart[x, y]}.svg"));
+                    _userInputImages[x, y].Source = new BitmapImage(new Uri($"ms-appx:///Icons/Set{_setNum}/Asset {_userInputs[x, y]}.svg"));
                     Grid.SetRow(_userInputImages[x, y], x);
                     Grid.SetColumn(_userInputImages[x, y], y);
                 }
