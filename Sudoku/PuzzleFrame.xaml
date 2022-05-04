@@ -47,7 +47,7 @@
             
             <!--<Base on puzzlemanager to setup icon inside cell>>-->
             <StackPanel Grid.Row="0" Grid.Column="0">
-                <Image Name="Image00" Source="Icons/Set2/Asset 9.svg"/>
+                <Image Name="Image00" Source="Icons/Set2/Asset 9.svg" VerticalAlignment="Center" Stretch="UniformToFill"/>
             </StackPanel>
             <StackPanel Grid.Row="0" Grid.Column="1">
                 <Image Name="Image01" Source="Icons/Set2/Asset 6.svg"/>

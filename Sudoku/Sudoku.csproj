@@ -130,6 +130,9 @@
     <Compile Include="PuzzleManager.cs" />
     <Compile Include="PuzzleReduced.cs" />
     <Compile Include="PuzzleSolver.cs" />
+    <Compile Include="WilliamSudoku.xaml.cs">
+      <DependentUpon>WilliamSudoku.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -138,6 +141,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Background.jpg" />
+    <Content Include="Assets\Homebackground.png" />
     <Content Include="Assets\sukocatslogo.jpg" />
     <Content Include="Icons\Set1\Asset 1.svg" />
     <Content Include="Icons\Set1\Asset 2.svg" />
@@ -176,6 +180,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="PuzzleFrame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WilliamSudoku.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
