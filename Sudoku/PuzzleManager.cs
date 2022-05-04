@@ -16,6 +16,7 @@ namespace Sudoku
          */
         public PuzzleGenerator Generator { get { return _generator; } }
         private PuzzleGenerator _generator;
+        public int[,] UserInputs = new int[9, 9];
 
 
         public PuzzleManager(int size, int difficulty)
