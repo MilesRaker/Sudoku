@@ -24,11 +24,11 @@ namespace Sudoku
     public sealed partial class PuzzleFrame : Page
     {
         private PuzzleManager _puzzle;
-        private Image[,] _gridImages = new Image[9,9];
-        private int[,] _userInputs = new int[9, 9];
-        private Image[,] _userInputImages = new Image[9, 9];
-        private Flyout[,] _flyoutGrid = new Flyout[9,9];
-        private Button[,] _buttonGrid = new Button[9,9];
+        private Image[,] _gridImages;
+        private int[,] _userInputs;
+        private Image[,] _userInputImages;
+        private Flyout[,] _flyoutGrid;
+        private Button[,] _buttonGrid;
         private Grid _board;
         private int _setNum;
         private int _difficulty;
@@ -40,10 +40,18 @@ namespace Sudoku
         /// <param name="parameters">int size, int setNum, int difficulty</param>
         public PuzzleFrame()
         {
+            // initialize fields
             _size = 9; // pass as parameter?
             _setNum = 2; // pass as parameter?
             _difficulty = 25; // pass as parameter?
             _puzzle = new PuzzleManager(_size, _difficulty);
+            _gridImages = new Image[_size, _size];
+            _userInputs = new int[_size, _size];
+            _userInputImages = new Image[_size, _size];
+            _flyoutGrid = new Flyout[_size, _size];
+            _buttonGrid = new Button[_size, _size];
+
+
             InitializeGridImages();
             InitializeFlyoutPicker();
             InitializeUserInputImages();
@@ -119,11 +127,12 @@ namespace Sudoku
             Button[] buttons = new Button[_size]; // parameratirize the size
             for (int i = 0; i < buttons.Length; i++)
             {
-                int index = i + 1;
+                int index = i;
                 buttons[i] = new Button();
                 Grid.SetRow(buttons[i], i / 3);
                 Grid.SetColumn(buttons[i], i % 3);
                 buttons[i].Click += (sender, e) => PickerClick(x,y,index); 
+
             }
             return buttons;
         }
@@ -133,26 +142,8 @@ namespace Sudoku
             // place i into board[x, y]
             // userInput Image grid update
             _userInputs[x, y] = index;
-            _userInputImages[x, y].Source = new BitmapImage(new Uri($"ms-appx:///Icons/Set{2}/Asset {_userInputs[x, y]}.svg")); // todo: picks same image each go
-            //RenderUserInputImages(2);
-        }
-        /// <summary>
-        /// updates _userInputImages array
-        /// </summary>
-        /// <param name="setNum"></param>
-        /// <exception cref="NotImplementedException"></exception>
-        private void UpdateUserInputImages(int setNum)
-        {
-            throw new NotImplementedException();
-        }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="setNum"></param>
-        /// <exception cref="NotImplementedException"></exception>
-        private void RenderUserInputImages(int setNum)
-        {
-            throw new NotImplementedException();
+            _userInputImages[x, y].Source = new BitmapImage(new Uri($"ms-appx:///Icons/Set{2}/Asset {_userInputs[x, y] + 1}.svg"));
+            _flyoutGrid[x, y].Hide();
         }
 
         private Image[] CreatePickerGridImages(int setNum)
@@ -170,7 +161,6 @@ namespace Sudoku
             }
             return images;
         }
-
         private void InitializeGrid()
         {
             Grid board = new Grid();
@@ -231,25 +221,6 @@ namespace Sudoku
                     }
                 }
             }
-        }
-        private void PopulateBoard()
-        {
-            for (int x = 0; x < _puzzle.Generator.Size; x++)
-            {
-                for (int y = 0; y < _puzzle.Generator.Size; y++)
-                {
-                    if (_puzzle.Generator.PuzzleStart[x, y] == 0)
-                    {
-                        _board.Children.Add(_buttonGrid[x, y]);
-                        _buttonGrid[x, y].Content = _gridImages[x, y]; // UserInput Images
-                    }
-                    else
-                    {
-                        //_board.Children.Add(_userInputImages[x, y]);
-                    }
-                }
-            }
-
         }
         private void InitializeGridImages()
         {
