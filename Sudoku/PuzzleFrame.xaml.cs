@@ -60,6 +60,21 @@ namespace Sudoku
             this.InitializeComponent();
             this.InitializeGrid();
 
+            RenderGridImages();
+
+        }
+
+        private void RenderGridImages()
+        {
+            for (int x = 0; x < _puzzle.Generator.Size; x++)
+            {
+                for (int y = 0; y < _puzzle.Generator.Size; y++)
+                {
+                    // must be assigned to the page before creating bitmapimage
+                    _gridImages[x, y].Source = new BitmapImage(new Uri($"ms-appx:///Icons/Set{_setNum}/Asset {_puzzle.Generator.PuzzleStart[x, y]}.svg"));
+                }
+            }
+
         }
 
         private void InitializeButtonGrid()
@@ -185,6 +200,24 @@ namespace Sudoku
             RowDefinition row6 = new RowDefinition();
             RowDefinition row7 = new RowDefinition();
             RowDefinition row8 = new RowDefinition();
+            col0.Width = new GridLength(75);
+            col1.Width = new GridLength(75);
+            col2.Width = new GridLength(75);
+            col3.Width = new GridLength(75);
+            col4.Width = new GridLength(75);
+            col5.Width = new GridLength(75);
+            col6.Width = new GridLength(75);
+            col7.Width = new GridLength(75);
+            col8.Width = new GridLength(75);
+            row0.Height = new GridLength(75);
+            row1.Height = new GridLength(75);
+            row2.Height = new GridLength(75);
+            row3.Height = new GridLength(75);
+            row4.Height = new GridLength(75);
+            row5.Height = new GridLength(75);
+            row6.Height = new GridLength(75);
+            row7.Height = new GridLength(75);
+            row8.Height = new GridLength(75);
             board.ColumnDefinitions.Add(col0);
             board.ColumnDefinitions.Add(col1);
             board.ColumnDefinitions.Add(col2);
@@ -229,6 +262,7 @@ namespace Sudoku
                 for (int y = 0; y < _puzzle.Generator.Size; y++)
                 {
                     _gridImages[x, y] = new Image(); 
+                    // must be assigned to the page before creating bitmapimage
                     _gridImages[x, y].Source = new BitmapImage(new Uri($"ms-appx:///Icons/Set{_setNum}/Asset {_puzzle.Generator.PuzzleStart[x, y]}.svg"));
                     Grid.SetRow(_gridImages[x, y], x);
                     Grid.SetColumn(_gridImages[x, y], y);
