@@ -52,8 +52,9 @@ namespace Sudoku
                 for(int y = 0; y < 9; y++)
                 {
                     _buttonGrid[x,y] = new Button();
-                    _buttonGrid[x,y].HorizontalAlignment = HorizontalAlignment.Stretch;
-                    _buttonGrid[x,y].VerticalAlignment = VerticalAlignment.Stretch;
+                    _buttonGrid[x, y].HorizontalAlignment = HorizontalAlignment.Stretch;
+                    _buttonGrid[x, y].VerticalAlignment = VerticalAlignment.Stretch;
+                    _buttonGrid[x, y].Flyout = _flyoutGrid[x,y];
                     Grid.SetRow(_buttonGrid[x, y], x);
                     Grid.SetColumn(_buttonGrid[x, y], y);
                     // eventually the button will have flyout picker and image
@@ -111,6 +112,8 @@ namespace Sudoku
             for (int i = 0; i < buttons.Length; i++)
             {
                 buttons[i] = new Button();
+                Grid.SetRow(buttons[i], i / 3);
+                Grid.SetColumn(buttons[i], i % 3);
                 buttons[i].Click += (sender, e) => PickerClick(x,y,i);
             }
             return buttons;
